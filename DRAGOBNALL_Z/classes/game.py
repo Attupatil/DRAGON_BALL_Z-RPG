@@ -15,108 +15,49 @@ class bcolors:
 
 class Player:
 
-    """
-    Base class used for Player creation.
-    Takes arguments self, name, hp, mp, atk, df, magic, items
-    """
-
     def __init__(self, name, hp, mp, atk, df, magic, items):
-        # Set maximum hp
         self.max_hp = hp
-        # Set current hp
         self.hp = hp
-        # Set maximum mp
         self.max_mp = mp
-        # Set current mp
         self.mp = mp
-        # Set low attack(int) 
         self.atkl = atk - 10
-        # Set high attack(int)
         self.atkh = atk + 10
-        # Set defense(int)
         self.df = df
-        # Set magic (list)
         self.magic = magic
-        # Set items (list)
         self.items = items
-        # Set player name
         self.name = name
-        # Set available player actions
         self.actions = ['Attack', 'Magic', 'Items']
 
     def generate_damage(self):
-
-        """
-        Method to calculate damage using self.atkl and self.atkh
-        """
-
         return random.randrange(self.atkl, self.atkh)
 
     def heal(self, dmg):
-
-        """
-        Method to calculate and apply healing.
-        Takes argument dmg.
-        """
-
-        # Increase self.hp by dmg(int)
         self.hp += dmg
-        #Compare current hp to max hp and if over, set to maxhp
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
     def take_damage(self, dmg):
-
-        """
-        Method to calculate and apply damage taken.
-        Take argument dmg.
-        """
-
-        # Decrease self.hp by dmg(int)
         self.hp -= dmg
-        # Check if current hp is below 0, and set to 0 if below
         if self.hp < 0:
             self.hp = 0
         return self.hp
 
     def reduce_mp(self, cost):
-        """
-        Method to calculate and apply mp reduction
-        Takes argument cost(int)
-        """
         self.mp -= cost
 
     def get_hp(self):
-        """
-        Method to return current hp(int)
-        """
         return self.hp
 
     def get_max_hp(self):
-        """
-        Method to return maximum hp
-        """
         return self.max_hp
 
     def get_mp(self):
-        """
-        Method to return current mp
-        """
         return self.mp
 
     def get_max_mp(self):
-        """
-        Method to return maximum mp
-        """
-
         return self.max_mp
 
     def choose_action(self):
-
-        """
-        Method to print action choices
-        """
-
         i = 1
         print("\n" + "    " + bcolors.B0LD + self.name + bcolors.ENDC)
         print(bcolors.OKBLUE + bcolors.B0LD + "    Actions" + bcolors.ENDC)
@@ -125,11 +66,6 @@ class Player:
             i += 1
 
     def choose_magic(self):
-
-        """
-        Method to print available magic choices
-        """
-
         i = 1
         print("\n" + bcolors.OKBLUE + bcolors.B0LD + "Magic" + bcolors.ENDC)
         for spell in self.magic:
@@ -137,11 +73,6 @@ class Player:
             i += 1
 
     def choose_item(self):
-
-        """
-        Method to print available items
-        """
-
         i = 1
         print("\n" + bcolors.OKGREEN + bcolors.B0LD + "ITEMS" + bcolors.ENDC)
         for item in self.items:
@@ -150,11 +81,6 @@ class Player:
             i += 1
 
     def choose_target(self, enemies):
-
-        """
-        Method to print available targets and allow user to chose item
-        """
-
         i = 1
         print("\n" + bcolors.FAIL + bcolors.B0LD + "    Target:" + bcolors.ENDC)
         for enemy in enemies:
@@ -165,12 +91,6 @@ class Player:
         return choice
 
     def get_enemy_stats(self):
-        """
-        Method to return enemy stats.
-        Seems to be currently broken, as it is missing the enemies argument
-        and is strikingly similar to the get_stats method.
-        """
-
         hp_bar = ""
         bar_ticks = ((self.hp / self.max_hp) * 100) / 2
 
@@ -201,11 +121,6 @@ class Player:
               hp_bar + bcolors.ENDC + "|")
 
     def get_stats(self):
-
-        """
-        Method to create and print bar for player stats
-        """
-
         hp_bar = ""
         bar_ticks = (self.hp/self.max_hp) * 100 / 4
 
