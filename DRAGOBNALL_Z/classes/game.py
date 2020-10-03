@@ -165,6 +165,12 @@ class Player:
         return choice
 
     def get_enemy_stats(self):
+        """
+        Method to return enemy stats.
+        Seems to be currently broken, as it is missing the enemies argument
+        and is strikingly similar to the get_stats method.
+        """
+
         hp_bar = ""
         bar_ticks = ((self.hp / self.max_hp) * 100) / 2
 
@@ -195,6 +201,11 @@ class Player:
               hp_bar + bcolors.ENDC + "|")
 
     def get_stats(self):
+
+        """
+        Method to create and print bar for player stats
+        """
+
         hp_bar = ""
         bar_ticks = (self.hp/self.max_hp) * 100 / 4
 
